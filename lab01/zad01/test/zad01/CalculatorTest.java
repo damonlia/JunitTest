@@ -1,9 +1,11 @@
 package zad01;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 import org.junit.Ignore;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 
 public class CalculatorTest {
  Calculator c = new Calculator();
@@ -34,14 +36,20 @@ public class CalculatorTest {
  
  @Test
 	public void great(){
-		assertEquals(false,c.greater(2, 3));
+		assertTrue(c.greater(3, 2));
 		System.out.println("greater:" + c);
 	}
  
- @Ignore
+ @Rule
+ public ExpectedException thrown= ExpectedException.none();
+ 
  @Test
 	public void divZero(){
-		
-		System.out.println("Adding:" + c);
+	 System.out.println("przed");
+	 thrown.expect(ArithmeticException.class);
+	 	c.div(1, 0);
+	 	System.out.println("po");
+		System.out.println("wywalono wyj¹tek");
 	}
+
 }
