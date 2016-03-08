@@ -1,7 +1,10 @@
-package unittestdemo;
-import static org.junit.Assert.*;
+package junittestdemo;
+
+import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
+
+
 
 public class CalculatorTest {
 	Calculator c = new Calculator();
