@@ -21,4 +21,9 @@ public class Calculator {
 		else return false;
 		
 	}
+	
+
+	public double divDouble(double a, double b){
+		return a/b;
+	}
 }

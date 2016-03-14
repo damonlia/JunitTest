@@ -53,4 +53,10 @@ public class CalculatorTest {
 		 	c.div(1, 0);
 
 		}
+	 
+	 @Test
+		public void divDouble(){
+		 assertEquals(1.88235294, c.divDouble(3.2, 1.7), 1e-8);
+		 System.out.println("divDouble:" + c);
+		}
 }
