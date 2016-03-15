@@ -25,7 +25,6 @@ public class PhoneTest {
 	@Test
 	public void get(){
 		r= new Repository();
-		Phone p1 = new Phone("HTC2");
 		pho.setName("HTC2");
 		r.addP(pho);
 		Phone phonesFromAll = new Phone();
