@@ -2,7 +2,7 @@ package wej01;
 
 import java.util.ArrayList;
 
-public class Repository {
+public class Repository implements IRepository{
 	ArrayList<Phone> phonesAll = new ArrayList<Phone>();
 	public void addP(Phone p){
 		phonesAll.add(p);

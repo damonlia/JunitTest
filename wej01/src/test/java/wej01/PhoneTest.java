@@ -4,18 +4,25 @@ import static org.junit.Assert.*;
 
 import java.util.ArrayList;
 
+import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 
 public class PhoneTest {
 	private Repository r;
-	Phone pho = new Phone();
+	private Phone pho;
+	@Before
+	public void startWith(){
+		pho = new Phone("HTC2");
+		r= new Repository();
+		r.addP(pho);
+		
+	}
 	@Test
 	public void testAdd() {
-		r= new Repository();
 		int dlugoscPrzedDodaniem = r.getPhonesAll().size();
 		
-		Phone p = new Phone("Kasia");
+		Phone p = new Phone("LG");
 		r.addP(p);
 		
 		int dlugoscPoDodaniu = r.getPhonesAll().size();
@@ -24,12 +31,17 @@ public class PhoneTest {
 	
 	@Test
 	public void get(){
-		r= new Repository();
-		pho.setName("HTC2");
-		r.addP(pho);
+		
 		Phone phonesFromAll = new Phone();
 		phonesFromAll = r.getPhoneName("HTC2"); 
 		
 		assertSame(pho,phonesFromAll);
+	}
+	
+	@Test 
+	public void getAll(){
+		ArrayList<Phone> phones2 = new ArrayList<Phone>();
+		phones2.add(pho);
+		assertEquals(phones2, r.getPhonesAll());
 	}
 }
