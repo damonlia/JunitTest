@@ -13,7 +13,7 @@ public class PhoneTest {
 	private Phone pho;
 	@Before
 	public void startWith(){
-		pho = new Phone("HTC2");
+		pho = new Phone("HTC");
 		r= new Repository();
 		r.addP(pho);
 		
@@ -32,10 +32,10 @@ public class PhoneTest {
 	@Test
 	public void get(){
 		
-		Phone phonesFromAll = new Phone();
-		phonesFromAll = r.getPhoneName("HTC2"); 
+		Phone phoneWithName = new Phone();
+		phoneWithName = r.getPhoneName("HTC"); 
 		
-		assertSame(pho,phonesFromAll);
+		assertSame(pho,phoneWithName);
 	}
 	
 	@Test 
