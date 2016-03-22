@@ -4,9 +4,14 @@ import java.util.ArrayList;
 
 public class Repository implements IRepository{
 	ArrayList<Phone> phonesAll = new ArrayList<Phone>();
+	
 	public void addP(Phone p){
 		phonesAll.add(p);
 	}
+	public void removeP(Phone p){
+		phonesAll.remove(p);
+	}
+	
 	public ArrayList<Phone> getPhonesAll() {
 		return phonesAll;
 	}

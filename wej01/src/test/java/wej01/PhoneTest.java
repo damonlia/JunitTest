@@ -44,4 +44,14 @@ public class PhoneTest {
 		phones2.add(pho);
 		assertEquals(phones2, r.getPhonesAll());
 	}
+	
+	@Test
+	public void testRemove(){
+		int dlugoscPrzedUsunieciem = r.getPhonesAll().size();
+	
+		r.removeP(pho);
+		
+		int dlugoscPoUsunieciu = r.getPhonesAll().size();
+		assertEquals(dlugoscPoUsunieciu, dlugoscPrzedUsunieciem-1);
+	}
 }
