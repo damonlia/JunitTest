@@ -1,30 +1,37 @@
 package wej01;
 
 import java.util.ArrayList;
+import java.util.List;
 
-public class Repository implements IRepository{
-	ArrayList<Phone> phonesAll = new ArrayList<Phone>();
+public class Repository {
+	List<Phone> phonesAll = new ArrayList<Phone>();
+	private IMyList container;
 	
-	public void addP(Phone p){
-		phonesAll.add(p);
+	public Repository(IMyList container){
+		super();
+		this.container = container;
 	}
-	public void removeP(Phone p){
-		phonesAll.remove(p);
+
+	public void add(Phone p){
+		container.add(p);
 	}
-	
-	public ArrayList<Phone> getPhonesAll() {
-		return phonesAll;
-	}
-	public void setPhonesAll(ArrayList<Phone> phonesAll) {
-		this.phonesAll = phonesAll;
+	public void remove(Phone p){
+		container.remove(p);
 	}
 	
-	public Phone getPhoneName(String name) {
+	public IMyList getPhonesAll() {
+		return container.getPhonesAll();
+	}
+//	public void setPhonesAll(ArrayList<Phone> phonesAll) {
+//		this.phonesAll = phonesAll;
+//	}
+	
+	public Phone getPhoneByName(String name) {
 		for(Phone p: phonesAll)
 		{
 			if(p.getName()== name)
 				return  p;
 		}
-		return null;
+		return container.getPhoneByName(name);
 	}
 }
