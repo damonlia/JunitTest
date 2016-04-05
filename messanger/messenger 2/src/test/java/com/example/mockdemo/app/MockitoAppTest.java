@@ -1,6 +1,7 @@
 package com.example.mockdemo.app;
 
 import static org.mockito.Mockito.*;
+import static org.easymock.EasyMock.expect;
 import static org.hamcrest.CoreMatchers.either;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.junit.Assert.assertEquals;
@@ -8,6 +9,7 @@ import static org.junit.Assert.assertThat;
 
 import org.easymock.Capture;
 import org.easymock.EasyMock;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
@@ -32,9 +34,14 @@ public class MockitoAppTest {
 		msMock = Mockito.mock(MessageService.class);
 		messenger = new Messenger(msMock);
 	}
+	
+	@After
+	public void validate() {
+		validateMockitoUsage();
+	}
 
 	@Test
-	public void sendingValidRecipientAndServer()
+	public void sendingValidRecipientAndServerM()
 			throws MalformedRecipientException {
 
 		when(msMock.send(VALID_SERVER, VALID_MESSAGE)).thenReturn(
@@ -50,34 +57,30 @@ public class MockitoAppTest {
 		verify(msMock);
 	}
 
-//	@Test
-//	public void sendingInvalidServer() throws MalformedRecipientException {
-//
-//		expect(msMock.checkConnection(INVALID_SERVER)).andReturn(
-//				ConnectionStatus.FAILURE);
-//		expect(msMock.send(INVALID_SERVER, VALID_MESSAGE)).andReturn(
-//				SendingStatus.SENDING_ERROR);
-//		replay(msMock);
-//
-//		assertThat(messenger.testConnection(INVALID_SERVER), equalTo(1));
-//		assertEquals(1, messenger.sendMessage(INVALID_SERVER, VALID_MESSAGE));
-//
-//		verify(msMock);
-//	}
-//
+	@Test
+	public void sendingInvalidServerM() throws MalformedRecipientException {
+
+		when(msMock.checkConnection(INVALID_SERVER)).thenReturn(
+				ConnectionStatus.FAILURE);
+		when(msMock.send(INVALID_SERVER, VALID_MESSAGE)).thenReturn(
+				SendingStatus.SENDING_ERROR);
+
+		assertThat(messenger.testConnection(INVALID_SERVER), equalTo(1));
+		assertEquals(1, messenger.sendMessage(INVALID_SERVER, VALID_MESSAGE));
+
+		verify(msMock);
+	}
+
 //	@Test
 //	public void sendingInvalidReceipient() throws MalformedRecipientException {
-//
-//		expect(msMock.send(VALID_SERVER, INVALID_MESSAGE)).andThrow(
-//				new MalformedRecipientException()).atLeastOnce();
-//
-//		replay(msMock);
+//		when(msMock.send(VALID_SERVER, INVALID_MESSAGE)).thenThrow(
+//				new MalformedRecipientException());
 //
 //		assertEquals(2, messenger.sendMessage(VALID_SERVER, INVALID_MESSAGE));
 //		verify(msMock);
 //	}
-//
-//	// Przechwytywanie parametrow
+
+	// Przechwytywanie parametrow
 //	@Test
 //	public void sendingConnectionStatus() {
 //
@@ -85,7 +88,7 @@ public class MockitoAppTest {
 //
 //		expect(msMock.checkConnection(capture(capturedServer))).andReturn(
 //				ConnectionStatus.FAILURE);
-//		replay(msMock);
+//	
 //
 //		assertEquals(1, messenger.testConnection(INVALID_SERVER));
 //		assertEquals(INVALID_SERVER, capturedServer.getValue());
