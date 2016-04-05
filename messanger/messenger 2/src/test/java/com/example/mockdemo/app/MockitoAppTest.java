@@ -35,10 +35,10 @@ public class MockitoAppTest {
 		messenger = new Messenger(msMock);
 	}
 	
-	@After
-	public void validate() {
-		validateMockitoUsage();
-	}
+//	@After
+//	public void validate() {
+//		validateMockitoUsage();
+//	}
 
 	@Test
 	public void sendingValidRecipientAndServerM()
@@ -72,7 +72,7 @@ public class MockitoAppTest {
 	}
 
 	@Test
-	public void sendingInvalidReceipient() throws MalformedRecipientException {
+	public void sendingInvalidReceipientM() throws MalformedRecipientException {
 		when(msMock.send(VALID_SERVER, INVALID_MESSAGE)).thenThrow(
 				new MalformedRecipientException());
 
