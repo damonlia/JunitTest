@@ -7,35 +7,12 @@ import com.example.mockdemo.messenger.SendingStatus;
 public class Messenger {
 
 	private MessageService ms;
-	public String serverM;
-	public String messageM;
-	
+
 	public Messenger(MessageService ms) {
 		this.ms = ms;
 	}
 
-	public String getServerM() {
-		return serverM;
-	}
-
-
-	public void setServerM(String serverM) {
-		this.serverM = serverM;
-	}
-
-
-	public String getMessageM() {
-		return messageM;
-	}
-
-
-	public void setMessageM(String messageM) {
-		this.messageM = messageM;
-	}
-
-
 	public int testConnection(String server) {
-		
 		switch (ms.checkConnection(server)) {
 		case FAILURE:
 			return 1;
@@ -45,12 +22,12 @@ public class Messenger {
 		return 1;
 	}
 
-	public int sendMessage() {
+	public int sendMessage(String server, String message) {
 
 		int result = -1;
 
 		try {
-			SendingStatus sStatus = ms.send(serverM, messageM);
+			SendingStatus sStatus = ms.send(server, message);
 			switch (sStatus) {
 			case SENT:
 				result = 0;
