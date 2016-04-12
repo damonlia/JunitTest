@@ -34,9 +34,9 @@ public class Messenger {
 	}
 
 
-	public int testConnection(String server) {
+	public int testConnection() {
 		
-		switch (ms.checkConnection(server)) {
+		switch (ms.checkConnection(serverM)) {
 		case FAILURE:
 			return 1;
 		case SUCCESS:
