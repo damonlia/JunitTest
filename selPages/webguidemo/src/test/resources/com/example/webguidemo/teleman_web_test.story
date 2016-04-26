@@ -7,9 +7,6 @@ Then Drama page is shown
 When user opens explore drama
 Then drama explore page is shown
 
-When user select filters
-Then selected drama are shown
-
 Given user is on SingUp page
 When user filled incorrectly form 
 Then validation information is shown
